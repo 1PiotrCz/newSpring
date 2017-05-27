@@ -8,6 +8,16 @@
 
 <center>
     <h1> Jestem przykładową templatka </h1></center>
-<p th:text="${someString}"></p>
+    <p th:text="${someString == 'a'} ? 'Jest po 16' : 'Jest przed 16' "></p>
+
+    <form action="#" th:action="@{/data}" method = "post">
+        <p>Imie:<input type="text" th:name="name"/>
+        <p>Nazwisko:<input type="text" th:name="lastName"/>
+        <p>Wiek:<input type="text" th:name="age"/>
+        <p><input type="submit" value="Wyslij"/>
+
+    </form>
+
+
 </body>
 </html>
