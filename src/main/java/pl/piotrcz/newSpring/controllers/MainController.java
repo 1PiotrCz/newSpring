@@ -1,17 +1,13 @@
 package pl.piotrcz.newSpring.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.piotrcz.newSpring.models.Person;
-import pl.piotrcz.newSpring.models.SimpleBean;
+import pl.piotrcz.newSpring.models.Forms.PersonForm;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 /**
  * Created by Piotr Czubkowski on 2017-05-27.
@@ -61,42 +57,42 @@ public class MainController {
 
     @RequestMapping(value = "/newform", method = RequestMethod.GET)
     public String newform(Model model) {
-        model.addAttribute("personObject", new Person());
+        model.addAttribute("personObject", new PersonForm());
         return "form";
     }
 
     @RequestMapping(value = "/newform", method = RequestMethod.POST)
-    public String newformPost(@ModelAttribute("personObject") @Valid Person person, BindingResult result, Model model) {
+    public String newformPost(@ModelAttribute("personObject") @Valid PersonForm personForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "form";
         }
         return "result";
-//        return "Przyszla klasa: " + person.getName();
+//        return "Przyszla klasa: " + personForm.getName();
     }
 
 //
 //    @RequestMapping(value = "/newformcontact", method = RequestMethod.GET)
 //    public String newformcontact(Model model) {
-//        model.addAttribute("personObject", new Person());
+//        model.addAttribute("personObject", new PersonForm());
 //        return "contact";
 //    }
 //
 //    @RequestMapping(value = "/contact", method = RequestMethod.POST)
 //    public String contact(Model model) {
-//        model.addAttribute("personObject", new Person());
+//        model.addAttribute("personObject", new PersonForm());
 //        return "contact";
 //    }
 
 
     private void testBuilder() {
-        Person person = new Person.Builder("Piotr")
+        PersonForm personForm = new PersonForm.Builder("Piotr")
                 .lastname("Czubkowski")
                 .age(27)
                 .email("piotrcz@tlen.pl")
                 .number("123-456-789")
                 .build();
 
-        person.getAge();
+        personForm.getAge();
         ;
     }
 
